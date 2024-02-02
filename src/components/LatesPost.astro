@@ -1,0 +1,44 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+
+const url = "https://geekzone.pythonanywhere.com/api/get-lastest-articles"
+const response = await fetch(url);
+const post = await response.json();
+
+console.log(response.status);
+console.log(post[0].title_en);
+var dateTimeString = post[0].posted;
+var dateTime = new Date(dateTimeString);
+
+var formattedDate = dateTime.toLocaleDateString('en-us', { day: 'numeric', month: 'short', year: 'numeric' });
+
+console.log(formattedDate);
+
+---
+
+<a href={`/blog/${post[0].slug}/`}>
+    <img src={`https://geekzone.pythonanywhere.com/${post[0].image}`} alt={post[0].title} />
+    <h4>{post[0].title_en}</h4>
+    <p>
+        <time datetime={formattedDate}>
+            { formattedDate }
+        </time>
+    </p>
+</a>
+<style>
+    a{
+        text-decoration: none;
+    }
+    .h4 {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+        /* text-decoration: underline red  2px !important; */
+
+    }
+    .p {
+        margin: 0;
+        color: rgb(var(--gray));
+        text-decoration: none !important;
+    }
+</style>

@@ -1,0 +1,50 @@
+---
+import BlogPost from '../../layouts/BlogPost.astro';
+
+import { getAllPosts } from "../../lib/api.js";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post: any) => {
+    return {
+      params: {
+        absolute_url: post.absolute_url,
+      },
+      props: {
+        title: post.title_en,
+        author: post.author.username,
+        body: post.body_en,
+        heroImage: post.image,
+        pubDate: post.posted,
+        category: post.category.name_en,
+        readingTime: post.reading_time,
+        views: post.views,
+        comments: post.comments,
+        tags: post.tags,
+        absoluteUrl: post.absolute_url,
+        reference: post.reference
+      },
+    };
+  });
+}
+
+const {title, body, author, pubDate, heroImage, category, readingTime, views, comments, tags, absoluteUrl, reference} = Astro.props;
+const props = {
+  title,
+  body,
+  author,
+  pubDate,
+  heroImage,
+  category,
+  readingTime,
+  views,
+  comments,
+  tags,
+  absoluteUrl,
+  reference,
+};
+---
+
+<BlogPost {...props}>
+	<div set:html={body} />
+</BlogPost>

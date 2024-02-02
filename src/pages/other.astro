@@ -1,0 +1,41 @@
+---
+import LatesPost from '../components/LatesPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getAllCategories, getCategoriesPost } from '../lib/api';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const categories = await getAllCategories();
+// console.log(category_posts);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			a{
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main class="w-100">
+			<h1 class="text-primary font-bold">🧑‍🚀 Welcome to other page</h1>
+            <ul class="list m-4">
+				{
+					categories.map((category) =>(
+						<li class="list-item py-2 fs-5">
+							<a href={`category/${category.slug}`}>
+								{category.name_en}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>

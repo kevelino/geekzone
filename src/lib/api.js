@@ -42,6 +42,13 @@ export const getTopPosts = async () => {
     return json;
 }
 
+export const getTopCategories = async () => {
+    const url = "get-tops-categories"
+    const response = await fetch(`${ENDPOINT}${url}`).catch((err) => { console.error(err) });
+    const json = await response.json();
+    return json;
+}
+
 
 export const getAllPosts = async () => {
     const url = "get-all-articles"

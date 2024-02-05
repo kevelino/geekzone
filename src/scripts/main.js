@@ -126,3 +126,24 @@
 
 })(jQuery);
 
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('toggleButton');
+    const closeButton = document.getElementById('closeButton');
+    const sideBlock = document.getElementById('sideBlock');
+
+    toggleButton?.addEventListener('click', function () {
+        // Toggle la classe 'active' sur le bloc latéral
+        sideBlock.classList.toggle('active');
+
+        // Si le bloc latéral est actif, déplace-le vers la droite, sinon, ramène-le à sa position initiale
+        if (sideBlock.classList.contains('active')) {
+            sideBlock.style.right = '0';
+        } else {
+            sideBlock.style.right = "-300px";
+        }
+    });
+    closeButton.addEventListener('click', function() {
+        sideBlock.style.right = "-300px";
+        sideBlock.classList.remove('active');
+    })
+});

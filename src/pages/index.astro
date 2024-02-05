@@ -28,23 +28,11 @@ const PreviousMonthPosts = await getPreviousMonthPosts();
 				<div class="col-lg-7 col-xl-8 mt-0">
 					<div class="position-relative overflow-hidden rounded">
 						<img src={`${IMAGE_URL}${LastPost.image}`} class="img-fluid rounded img-zoomin w-100" alt={LastPost.title_en} />
-						<div class="d-flex bg-dark justify-content-around p-2 position-absolute flex-wrap w-100" style="bottom: 0; left: 0;">
+						<div class="d-flex bg-dark justify-content-start p-2 position-absolute flex-wrap w-100" style="bottom: 0; left: 0;">
 							<a class="text-white me-3 link-hover">
 								<i class="fa fa-clock"></i> 
 								<span style="margin-left: 3px;">
-									{LastPost.reading_time} reading
-								</span>
-							</a>
-							<a class="text-white me-3 link-hover">
-								<i class="fa fa-eye"></i> 
-								<span style="margin-left: 3px;">
-									{LastPost.views} { LastPost.views > 1 ? ' views' : ' view' }
-								</span>
-							</a>
-							<a class="text-white me-3 link-hover">
-								<i class="fa fa-comment-dots"></i> 
-								<span style="margin-left: 3px;">
-									{ LastPost.comments.length } { LastPost.comments.length > 1 ? ' comments' : ' comment' }
+									{LastPost.reading_time} {LastPost.reading_time > 1 ? ' mins ': ' min ' } read
 								</span>
 							</a>
 						</div>
@@ -84,14 +72,8 @@ const PreviousMonthPosts = await getPreviousMonthPosts();
 														<small>
 															<i class="fa fa-clock"></i>
 															<span class="me-2" style="margin-left: 3px;">
-																{post.reading_time} reading
+																{post.reading_time} { post.reading_time > 1 ? ' mins ': ' min ' } read
 															</span> 
-														</small>
-														<small>
-															<i class="fa fa-eye"></i>
-															<span class="fw-bold" style="margin-left: 3px;">
-																{post.views} { post.views > 1 ? ' views' : ' view' }
-															</span>
 														</small>
 													</div>
 												</div>

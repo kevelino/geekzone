@@ -1,0 +1,56 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCategoriesPost, getAllCategories, getAllPosts } from '../../lib/api';
+import { IMAGE_URL } from '../../consts';
+import BaseLayout from 'src/layouts/BaseLayout.astro';
+
+const today = new Date();
+
+// export async function getStaticPaths({ paginate }: any) {
+//   const categories = await getAllCategories();
+//   return categories.map((category: any) => {
+//     return {
+//       params: {
+//         page: category.slug,
+//       },
+//       props: {
+//         page: category.slug,
+//         category: category.name_en,
+//         category_id: category.pk
+//       },
+//     };
+//   });
+// }
+
+
+
+const {page} = Astro.props;
+
+const category = 'Technology';
+const category_id = 1
+export async function getStaticPaths({ paginate }: any) {
+	const posts = await getAllPosts();
+  	return paginate(posts, { pageSize: 2 });
+}
+
+console.log(page);
+
+---
+<style>
+	.line{
+	  width: 1px;
+	  border: none;
+	}
+	#link{
+	  background-color: #26820a;
+	  color: white;
+  	}
+	#link:hover{
+		background-color: #164906;
+		transition: all ease-in 0.25s;
+	}
+</style>

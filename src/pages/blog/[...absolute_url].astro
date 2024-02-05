@@ -17,9 +17,8 @@ export async function getStaticPaths() {
         heroImage: post.image,
         pubDate: post.posted,
         category: post.category.name_en,
+        category_slug: post.category.slug,
         readingTime: post.reading_time,
-        views: post.views,
-        comments: post.comments,
         tags: post.tags,
         absoluteUrl: post.absolute_url,
         reference: post.reference
@@ -28,7 +27,7 @@ export async function getStaticPaths() {
   });
 }
 
-const {title, body, author, pubDate, heroImage, category, readingTime, views, comments, tags, absoluteUrl, reference} = Astro.props;
+const {title, body, author, pubDate, heroImage, category, readingTime, tags, absoluteUrl, reference, category_slug} = Astro.props;
 const props = {
   title,
   body,
@@ -37,14 +36,13 @@ const props = {
   heroImage,
   category,
   readingTime,
-  views,
-  comments,
   tags,
   absoluteUrl,
   reference,
+  category_slug,
 };
 ---
 
 <BlogPost {...props}>
-	<div set:html={body} />
+	<div set:html={body} id="article_body" />
 </BlogPost>

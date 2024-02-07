@@ -1,11 +1,12 @@
 ---
 import { IMAGE_URL } from '../consts';
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/BaseLayout.astro";
 import { getLastPost, getLastCategoryPost,  getLatesPosts, getTopPosts, getPreviousMonthPosts } from '../lib/api';
 import LastPostCategory from '@components/LastPostCategory.astro';
 import MostRecentPosts from '@components/MostRecentPosts.astro';
 import MostPopularPosts from '@components/MostRecentPosts.astro';
 import LastMonthPosts from '@components/LastMonthPosts.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 const LastPost = await getLastPost();
 const LastCategoryPost = await getLastCategoryPost();
@@ -18,7 +19,7 @@ const PreviousMonthPosts = await getPreviousMonthPosts();
 		text-decoration: none;
 	}
 </style>
-<BaseLayout>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<!-- Main Post Section Start -->
 	<div class="container-fluid py-5">
 		<div class="container py-5">
@@ -129,4 +130,4 @@ const PreviousMonthPosts = await getPreviousMonthPosts();
 		</div>
 	</div>
 	<!-- Most Populer News End -->
-</BaseLayout>
+</Layout>

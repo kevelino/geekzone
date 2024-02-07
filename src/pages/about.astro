@@ -1,62 +1,144 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/BaseLayout.astro';
+import AboutMeImage from '../../public/background-about.jpg';
+import { Image } from 'astro:assets';
+
+const title = "About Me";
+const description = "This is the about me page"
 ---
+<style>
+	.about__me__title{
+		text-transform: uppercase;
+		font-weight: bold;
+		font-family: monospace;
+		font-size: 5rem;
+		background: linear-gradient( to bottom, #26820a, #d63131, #f1d710);
+		-webkit-background-clip: text;
+		color: transparent;
+	}
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+	.about__me__sub__title{
+		text-transform: uppercase;
+		font-weight: bold;
+		font-family: monospace;
+		font-size: 3rem;
+		background: linear-gradient( 10deg, #26820a, #d63131, #f1d710);
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+	.about__me__text{
+		color: #333;
+		font-weight: 500;
+		font-size: 1.2rem;
+		line-height: 1.6rem;
+	}
+	a.about__me__link{
+		color: #333;
+		padding: 2rem 1.2rem;
+	}
+	a.about__me__link:hover i{
+		color: #26820a;
+		transition: color 1.2s ease;
+	}
+	a.about__me__link i{
+		font-size: 2.2rem;
+	}
+	.about__me__image__block img{
+		width: 100%;
+		height: 300px;
+	}
+	.img__comment{
+		text-align: center;
+		margin: 15px 0;
+		font-style: italic;
+		font-variant: small-caps;
+	}
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+	@media only screen and (max-width: 992px) {
+		.about__me__title{
+			font-size: 3rem;
+		}
+		.about__me__sub__title{
+			font-size: 2rem;
+		}
+		.about__me__image__block img{
+			width: 100%;
+			height: 260px;
+		}
+	}
+</style>
+<Layout title={title} description={description}>
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center">
+			<div class="col-md-8 col-11">
+				<div class="text-center py-4">
+					<h1 class="about__me__title">Hi, I'm Kevelino</h1>
+				</div>
+				<div>
+					<h2 class="py-4 about__me__sub__title">About Me</h2>
+					<p class="about__me__text">
+						I'm passionate about technology and programming. From an early age, 
+						I've been drawn to the world of computing and have spent a lot of time exploring its many facets.
+					</p>
+					<div>
+						<div class="about__me__image__block">
+							<Image src={AboutMeImage} alt={`About me image`} />
+							<p class="img__comment">
+								This bird is what represents me best
+							</p>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h2 class="py-4 about__me__sub__title">My goal</h2>
+					<p class="about__me__text">
+						My aim is to contribute to technological progress by developing innovative 
+						solutions and sharing my knowledge with the community. I firmly believe that technology 
+						can improve our daily lives and solve some of the most pressing challenges facing our society.
+					</p>
+				</div>
+				<div>
+					<h2 class="py-4 about__me__sub__title">My skills</h2>
+					<p class="about__me__text">
+						I've acquired solid expertise in several programming languages, including HTML, CSS, 
+						JavaScript, Python and C++. I'm also comfortable with modern web development frameworks 
+						and tools such as ReactJS, AstroJS, Django, NodeJS, NextJS and Flask. 
+						In addition to my technical skills, I have good problem-solving abilities and can work effectively in a team.
+					</p>
+				</div>
+				<div>
+					<h2 class="py-4 about__me__sub__title">My passion & Vision<h2>
+					<p class="about__me__text">
+						As well as my passion for programming, I'm also a keen follower of 
+						lifelong learning and the discovery of new technologies. I'm constantly on the lookout 
+						for the latest trends and advances in technology, and I love sharing my discoveries and knowledge with others.
+					</p>
+					<p class="about__me__text">
+						My vision for the future is to help create a world where technology is 
+						accessible to all and used responsibly to solve the most pressing problems 
+						facing our society. I believe in the importance of education and collaboration 
+						in shaping a better and more inclusive future for all.
+					</p>
+				</div>
+				<div class="py-4">
+					<h2 class="py-4 about__me__sub__title">Contact me</h2>
+					<a href="https://github.com/kevelino" target="_blank" class="about__me__link">
+						<i class="bi bi-github"></i>
+					</a>
+					<a href="https://gitlab.com/kevelino" target="_blank" class="about__me__link">
+						<i class="bi bi-gitlab"></i>
+					</a>
+					<a href="https://www.reddit.com/user/kevelino/" target="_blank" class="about__me__link">
+						<i class="bi bi-reddit"></i>
+					</a>
+					<a href="https://www.linkedin.com/in/kevelino-90396927a/" target="_blank" class="about__me__link">
+						<i class="bi bi-linkedin"></i>
+					</a>
+					<a href="https://trello.com/u/kevelino" target="_blank" class="about__me__link">
+						<i class="bi bi-trello"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </Layout>

@@ -3,7 +3,7 @@ import FormattedDate from '../../../components/FormattedDate.astro';
 import PostCard from '../../../components/PostCard.astro';
 import { getCategoriesPost, getAllCategories } from '../../../lib/api';
 import { IMAGE_URL } from '../../../consts';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Layout from '../../../layouts/BaseLayout.astro';
 
 const today = new Date();
 
@@ -78,7 +78,7 @@ const posts = await getCategoriesPost(slug);
 		}
 	}
 </style>
-<BaseLayout>
+<Layout title={category} description={`This page present all the article to ${category} category`}>
 	<!-- Post by category Start -->
 	<div class="container-fluid py-5">
 
@@ -144,4 +144,4 @@ const posts = await getCategoriesPost(slug);
 	</div>
 	<!-- Post by category End -->
 
-</BaseLayout>
+</Layout>

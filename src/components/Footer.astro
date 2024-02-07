@@ -22,20 +22,20 @@ const LatesPosts = await getLatesPosts(3);
 							<h4 class="mb-4 text-white">Most recent</h4>
 							{
 								LatesPosts.map((post: any) => (
-									<a href={`blog${post.absolute_url}`} title={post.title_en}>
+									<a href={`/blog${post.absolute_url}`} title={post.title_en}>
 										<div class="d-flex align-items-center mt-3">
 											<div class="rounded-circle border border-2 border-primary overflow-hidden">
 												<img src={`${IMAGE_URL}${post.image}`} class="img-zoomin img-fluid rounded-circle" style="width: 100px !important; height: 100px !important;" alt={post.title_en}>
 											</div>
 											<div class="d-flex flex-column ps-4">
 												<p class="text-uppercase text-white mb-3">{post.category.name}</p>
-												<a href={`blog${post.absolute_url}`} class="h6 text-white">
-													{post.title_en.slice(0, 40)}
+												<a href={`/blog${post.absolute_url}`} class="h6 text-white">
+													{post.title_en.slice(0, 40)}...
 												</a>
 												<small class="text-white d-block"><i class="fas fa-calendar-alt me-1"></i> 
 													<span style="margin-left: 3px;">
 														{
-															post.posted.toDateString == today.toDateString() ?
+															post.posted.toDateString === today.toDateString ?
 															'Today'
 															:
 															<FormattedDate date={post.posted} />
@@ -96,32 +96,8 @@ const LatesPosts = await getLatesPosts(3);
 	<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js"></script>
 	</script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-	<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-	<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
 	<script src="../scripts/easing/easing.min.js"></script>
 	<script src="../scripts/waypoints/waypoints.min.js"></script>
 	<script src="../scripts/owlcarousel/owl.carousel.min.js"></script>
 
 </footer>
-<style>
-	footer {
-		/* background: linear-gradient(var(--gray-gradient)) no-repeat; */
-		color: rgb(var(--gray));
-		text-align: center;
-		bottom: 0 !important;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>

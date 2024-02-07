@@ -90,3 +90,22 @@ export const getSugeredPosts = async (active_post_reference) => {
     const json = await response.json();
     return json;
 }
+
+
+export async function incrementViews(reference) {
+  const apiUrl = `post-increment-views/${reference}`; // Remplacez 'localhost:8000' par l'URL de votre API Django
+
+  try {
+    const response = await fetch(`${ENDPOINT}${apiUrl}`, {
+      method: 'PUT'
+    });
+
+    if (response.ok) {
+      console.log('Nombre de vues incrémenté avec succès.');
+    } else {
+      throw new Error('Une erreur s\'est produite lors de la mise à jour du nombre de vues.');
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}

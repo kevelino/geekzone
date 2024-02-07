@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { IMAGE_URL, SITE_URL } from '../consts';
-import { getSugeredPosts, getTopCategories, getTopPosts } from '../lib/api';
+import { getSugeredPosts, getTopCategories, getTopPosts, incrementViews } from '../lib/api';
 
 const today = new Date();
 
@@ -15,13 +15,24 @@ const SugeredPosts = await getSugeredPosts(reference);
 const TopPosts = await getTopPosts();
 const TopCatgegories = await getTopCategories();
 
-const local_url = 'http://127.0.0.1:2002/api/';
+incrementViews(reference);
+
 
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={body} />
+		<style>
+			.card__post__title{
+				color: #161616;
+				background-color: white !important;
+				transition: background-color 1.4s ease;
+			}
+			.card__post:hover .card__post__title{
+				color: #26820a;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -99,28 +110,23 @@ const local_url = 'http://127.0.0.1:2002/api/';
 										<a href={`https://www.linkedin.com/shareArticle?url=${SITE_URL}${absoluteUrl}`} target="_blank" 
 										class="link-hover btn btn-square rounded-circle border-primary text-dark d-flex align-items-center justify-content-center"><i class="fab fa-linkedin-in"></i></a>
 									</div>
-									<div class="mt-2 mb-2 d-flex">
-										<input readonly class="form-control" type="text" id="copy_url"
-										value={`${SITE_URL}${absoluteUrl}`}>
-										<input type="button" class="btn btn-secondary text-white" value="Copy" onclick="copyContent()">
-									</div>
 								</div>
 							</div>
 						</div>
 						{
-							SugeredPosts && (
+							SugeredPosts.lenght > 0 && (
 								<div class="bg-light rounded my-4 p-4">
 									<h4 class="mb-4">Related posts</h4>
 									<div class="row g-4">
 										{
 											SugeredPosts.map((post: any) => (
-												<div class="col-lg-6" title={post.title_en}>
-													<a href={`/blog${post.absolute_url}`}>
+												<div class="col-lg-6 card__post" title={post.title_en}>
+													<a href={`/blog${post.absolute_url}`} class="post_Link">
 														<div class="d-flex flex-column align-items-center p-3 bg-white rounded">
-															<img src={`${IMAGE_URL}${post.image}`} class="img-fluid rounded" style="width: 100%; height: 150px;" alt={post.title_en}>
+															<img src={`${IMAGE_URL}${post.image}`} class="img-fluid img-zoomin rounded" style="width: 100%; height: 150px;" alt={post.title_en}>
 															<div class="ms-3">
 																<div class="mt-3">
-																	<h5 class="h5 mb-2">{post.title_en.slice(0, 40)}</h5>
+																	<h5 class="h5 mb-2 card__post__title">{post.title_en.slice(0, 40)}</h5>
 																</div>
 																<p class="text-dark mt-3 mb-0 me-3">
 																	<i class="fa fa-clock"></i> 
@@ -219,14 +225,18 @@ const local_url = 'http://127.0.0.1:2002/api/';
 <script type="text/javascript" define:vars={{SITE_URL}}>
 	const content = document.getElementById('article_body');
 	const images = content.querySelectorAll('img');
+	const pres = content.querySelectorAll('pre');
 	images.forEach(function(image) {
 		// Ajouter une chaîne de caractères devant l'attribut src
 		var prefixe = SITE_URL;
 		image.classList.add('article_image');
-		// const newImages = content.querySelectorAll('.article_image');
-		// newImages.forEach(function(newImage) {
-		// 	newImage.style.display = 'none';
-		// })
 		image.setAttribute('src', prefixe + image.getAttribute('src'));
 	});
+	pres.forEach(function(pre) {
+		pre.style.backgroundColor = "#444";
+		pre.style.color = "#fff";
+		pre.style.borderRadius = "7px";
+		pre.style.padding = "8px";
+		pre.style.fontFamily = "monospace";
+	})
 </script>

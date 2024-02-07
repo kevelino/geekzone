@@ -1,0 +1,38 @@
+---
+export interface Props {
+  page: any;
+}
+
+const { page } = Astro.props;
+---
+<nav aria-label="Page navigation" class="mt-5">
+    <ul class="pagination justify-content-center">
+        {
+          page.url.prev && (
+              <li class="page-item">
+                  <a class="page-link" href={page.url.prev}>
+                    <i class="bi bi-arrow-left-short"></i>
+                    Previous
+                    </a>
+              </li>
+          )
+        }
+        {
+            page.url.next && (
+                <li class="page-item">
+                    <a class="page-link" href={page.url.next}>
+                        Next
+                        <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </li>
+            )
+        }
+    </ul>
+</nav>
+
+<style>
+    a.active{
+        color: #fff;
+        background-color: #26820a;
+    }
+</style>

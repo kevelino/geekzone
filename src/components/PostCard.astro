@@ -1,0 +1,81 @@
+---
+import FormattedDate from '../components/FormattedDate.astro';
+import { IMAGE_URL } from '../consts';
+
+const today = new Date();
+
+const {image, title, href, date} = Astro.props;
+---
+<style>
+    .card__post__title{
+		color: #161616;
+		background-color: white !important;
+		transition: background-color 1.4s ease;
+	}
+	.card__post:hover  .card__post__title{
+		color: #26820a;
+	}
+	.card__post{
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		word-wrap: break-word;
+		background-color: #fff;
+		background-clip: border-box;
+		border-radius: 10px;
+		border: 1px solid transparent;
+		margin-top: 25px;
+	}
+	.card__post__body{
+		flex: 1 1 auto;
+		padding: 1rem 1rem;
+		margin-top: 15px;
+	}
+	.card__post__footer{
+		padding: 0.5rem 1rem;
+		background-color: rgba(0,0,0,.03);
+		border-top: 1px solid rgba(0,0,0,.03);
+	}
+	.card__post__date{
+		font-weight: bold;
+		color: #154a05;
+	}
+	.card__post__img{
+    	object-fit: cover;
+		height: 150px;
+    	transition: transform 0.3s ease;
+	}
+	.card__post:hover .card__post__img{
+		transform: scale(0.9);
+	}
+	@media only screen and (max-width: 992px) {
+		.card__post__img{
+			height: auto;
+		}
+	}
+</style>
+<div class="col-xl-4 col-md-6 col-12 card__post" title={title}>
+    <a class="post_Link" href={`/blog${href}`} title={title}>
+        <img src={`${IMAGE_URL}${image}`} class="card-img-top card__post__img" alt={title}>
+        <div class="card__post__body">
+            <h5 class="card__post__title">
+                <span class="text-primary">// </span>
+                {title.slice(0, 50)}
+            </h5>
+        </div>
+        <div class="card__post__footer">
+            <small class="text-secondary">
+                Posted
+                <span class="card__post__date">
+                    {
+                        date.toDateString == today.toDateString() ?
+                        'Today'
+                        :
+                        <FormattedDate date={date} />
+                    }
+                </span>
+            </small>
+        </div>
+    </a>
+</div>

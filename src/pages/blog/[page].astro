@@ -1,33 +1,18 @@
 ---
-import FormattedDate from '../../../components/FormattedDate.astro';
-import PostCard from '../../../components/PostCard.astro';
-import { getCategoriesPost, getAllCategories } from '../../../lib/api';
-import { IMAGE_URL } from '../../../consts';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-
-const today = new Date();
-
-export async function getStaticPaths() {
-  const categories = await getAllCategories();
-  return categories.map((category: any) => {
-    return {
-      params: {
-        slug: category.slug,
-      },
-      props: {
-        slug: category.slug,
-        category: category.name_en,
-        category_id: category.pk
-      },
-    };
-  });
-}
+import { getAllCategories, getAllPosts } from '../../lib/api';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '@components/PostCard.astro';
+import Pagination from '@components/Pagination.astro';
 
 const AllCategories = await getAllCategories();
 
-const { slug, category, category_id } = Astro.props;
-const posts = await getCategoriesPost(slug);
+export async function getStaticPaths({ paginate }) {
+  
+	const posts = await getAllPosts();
+	return paginate(posts, { pageSize: 9 });
+}
 
+const { page } = Astro.props;
 ---
 <style>
 	#link{
@@ -79,14 +64,13 @@ const posts = await getCategoriesPost(slug);
 	}
 </style>
 <BaseLayout>
-	<!-- Post by category Start -->
 	<div class="container-fluid py-5">
 
 		<div class="container-fluid">
 			<div class="p-2 pt-4 pb-4 m-md-5 d-flex justify-content-center align-items-center bg-secondary">
 				<div>
 					<h1 class="text-light display-5">
-						{category}
+						Blogs
 					</h1>
 				</div>
 			</div>
@@ -104,16 +88,14 @@ const posts = await getCategoriesPost(slug);
 						<div class="row justify-content-center m-1 py-5">
 							<div class="row justify-content-start col-12">
 								{
-									posts ? (
-										posts.map((post: any) => (
+									page && (
+										page.data.map((post: any) => (
 											<PostCard image={post.image} title={post.title_en} href={post.absolute_url} date={post.posted} />
 										))
-									) : (
-										<h1>No Articles</h1>
 									)
 								}
 							</div>
-
+							<Pagination page={page} />
 						</div>
 					</div>
 				</div>
@@ -124,13 +106,12 @@ const posts = await getCategoriesPost(slug);
 					<div class="m-2 py-5 py-lg-2">
 						<h1>Categories</h1>
 					</div>
-					<ul class="category__List" id="category__Block">
+					<ul class="category__List">
 						{
 							AllCategories.map((category: any) => (
 								<li>
-									<a class={`catgeory__Item ${category.slug === slug && 'active__category d-flex justify-content-between'}`} href={`/category/${category.slug}`}>
+									<a class="catgeory__Item" href={`/category/${category.slug}`}>
 										{category.name_en}
-										{category.slug === slug && <i class="bi bi-activity"></i>}
 									</a>
 									
 								</li>
@@ -142,6 +123,5 @@ const posts = await getCategoriesPost(slug);
 		</div>
 
 	</div>
-	<!-- Post by category End -->
 
 </BaseLayout>

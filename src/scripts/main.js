@@ -145,5 +145,25 @@ document.addEventListener('DOMContentLoaded', function () {
     closeButton.addEventListener('click', function() {
         sideBlock.style.right = "-300px";
         sideBlock.classList.remove('active');
-    })
+    });
 });
+
+function checkIfElementExists(elementId) {
+    var element = document.getElementById(elementId);
+    if (element) {
+        return true; // L'élément existe
+    } else {
+        return false; // L'élément n'existe pas
+    }
+}
+
+// Utilisation de la fonction pour vérifier si un élément avec l'ID "monElement" existe
+var idExist = checkIfElementExists("category__Block");
+
+// Vérifie si l'élément existe
+if (idExist) {
+    const Blog_Link = document.getElementById("blog__Link");
+    Blog_Link.classList.add("active");
+} else {
+    console.log("");
+}

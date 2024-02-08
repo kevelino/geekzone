@@ -17,7 +17,6 @@ const TopCatgegories = await getTopCategories();
 
 incrementViews(reference);
 
-
 ---
 
 <html lang="en">
@@ -67,7 +66,7 @@ incrementViews(reference);
 							</div>
 						</div>
 						<div class="position-relative rounded overflow-hidden mb-3">
-							<img src={`${IMAGE_URL}${heroImage}`} class="img-zoomin img-fluid rounded w-100" style="height: 450px;" alt={title}>
+							<img src={`${IMAGE_URL}${heroImage}`} class="img-zoomin img-fluid rounded w-100 article__primary__image" alt={title}>
 							<div class="position-absolute" style="top: 20px; right: 20px;">                                              
 								<a class="text-white font-bold px-4 py-2 bg-primary rounded" href={`/category/${category_slug}`}>{category}</a>
 							</div>
@@ -114,7 +113,7 @@ incrementViews(reference);
 							</div>
 						</div>
 						{
-							SugeredPosts.lenght > 0 && (
+							SugeredPosts.length > 0 && (
 								<div class="bg-light rounded my-4 p-4">
 									<h4 class="mb-4">Related posts</h4>
 									<div class="row g-4">
@@ -229,7 +228,7 @@ incrementViews(reference);
 	images.forEach(function(image) {
 		// Ajouter une chaîne de caractères devant l'attribut src
 		var prefixe = SITE_URL;
-		image.classList.add('article_image');
+		image.classList.add('article__image');
 		image.setAttribute('src', prefixe + image.getAttribute('src'));
 	});
 	pres.forEach(function(pre) {

@@ -76,6 +76,13 @@ const posts = await getCategoriesPost(slug);
 			padding: 20px;
 			transition: right 0.3s ease-in-out; /* Ajoute une transition pour un effet fluide */
 		}
+		#closeButton{
+			position: absolute;
+			top: 130px;
+			right: 230px;
+			background-color: #f0f0f0;
+			color: #222;
+		}
 	}
 </style>
 <Layout title={category} description={`This page present all the article to ${category} category`}>
@@ -119,7 +126,9 @@ const posts = await getCategoriesPost(slug);
 				</div>
 				<div class="col-lg-3 hidden" id="sideBlock">
 					<div class="align-items-center justify-content-end d-lg-none d-flex">
-						<button type="button" id="closeButton" class="btn-close" aria-label="Close"></button>
+						<button type="button" id="closeButton" class="btn" aria-label="Close">
+							<i class="fa fa-arrow-right"></i>
+						</button>
 					</div>
 					<div class="m-2 py-5 py-lg-2">
 						<h1>Categories</h1>

@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Si le bloc latéral est actif, déplace-le vers la droite, sinon, ramène-le à sa position initiale
         if (sideBlock.classList.contains('active')) {
             sideBlock.style.right = '0';
+            closeButton.style.rotate = '0deg';
         } else {
             sideBlock.style.right = "-300px";
         }
@@ -145,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
     closeButton.addEventListener('click', function() {
         sideBlock.style.right = "-300px";
         sideBlock.classList.remove('active');
+        closeButton.style.rotate = '180deg';
     });
 });
 

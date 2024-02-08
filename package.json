@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.0.6",
-    "@astrojs/rss": "^4.0.3",
+    "@astrojs/mdx": "^2.1.1",
+    "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.0.5",
     "@ckeditor/ckeditor5-build-classic": "^41.0.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
-    "astro": "^4.2.3",
+    "astro": "^4.3.5",
     "node-fetch": "^3.3.2"
   }
 }

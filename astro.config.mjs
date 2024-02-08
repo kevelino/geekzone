@@ -10,4 +10,11 @@ export default defineConfig({
 		mdx(), 
 		sitemap(),
 	],
+	i18n: {
+		defaultLocale: "en",
+		locales: ["en", "fr"],
+		routing: {
+			prefixDefaultLocale: false
+		}
+	}
 });

@@ -429,3 +429,20 @@
 
 
 
+.article__primary__image{
+    height: 450px !important;
+}
+.article__image{
+    min-width: 95% !important;
+    border-radius: 5px !important;
+}
+
+@media only screen and (max-width: 992px) {
+    .article__image{
+        max-width: 100% !important;
+        height: 300px !important;
+    }
+    .article__primary__image{
+        height: auto !important;
+    }
+}	

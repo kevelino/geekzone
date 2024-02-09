@@ -1,18 +1,21 @@
 ---
 import { IMAGE_URL } from '../consts';
 import Layout from "../layouts/BaseLayout.astro";
-import { getLastPost, getLastCategoryPost,  getLatesPosts, getTopPosts, getPreviousMonthPosts } from '../lib/api';
+import { getLastPost, getLastCategoryPost,  getLatesPosts, getTopPosts, getPreviousMonthPosts, getWeekEvent } from '../lib/api';
 import LastPostCategory from '@components/LastPostCategory.astro';
 import MostRecentPosts from '@components/MostRecentPosts.astro';
 import MostPopularPosts from '@components/MostRecentPosts.astro';
 import LastMonthPosts from '@components/LastMonthPosts.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import WeekEvent from '@components/WeekEvent.astro';
 
 const LastPost = await getLastPost();
 const LastCategoryPost = await getLastCategoryPost();
 const LatesPosts = await getLatesPosts(10);
 const TopPosts = await getTopPosts();
 const PreviousMonthPosts = await getPreviousMonthPosts();
+const WeekEventPost = await getWeekEvent();
+
 ---
 <style>
 	a{
@@ -42,6 +45,19 @@ const PreviousMonthPosts = await getPreviousMonthPosts();
 						href={`blog${LastPost.absolute_url}`} 
 						class="display-6 text-dark mb-0 link-hover">{LastPost.title_en}</a>
 					</div>
+					{
+						WeekEventPost && (
+
+						<div class="bg-light p-4 rounded">
+							<div class="news-2">
+								<h3 class="mb-4">Week's event</h3>
+							</div>
+							{
+								<WeekEvent image={`${IMAGE_URL}${WeekEventPost.image}`} title={WeekEventPost.title_en} href={WeekEventPost.absolute_url} date={WeekEventPost.posted} />
+							}
+						</div>
+						)
+					}
 					
 				</div>
 					

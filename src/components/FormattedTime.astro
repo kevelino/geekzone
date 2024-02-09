@@ -1,0 +1,16 @@
+---
+interface Props {
+	date: Date;
+}
+
+const { date } = Astro.props;
+
+var dateTime = new Date(date);
+var hour = dateTime.getHours()
+var minutes = dateTime.getMinutes()
+var min = minutes.toString().padStart(2, '0');
+---
+
+<time datetime={dateTime.toISOString()}>
+	{hour}h : {min}
+</time>

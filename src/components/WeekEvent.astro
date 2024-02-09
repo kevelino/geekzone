@@ -1,0 +1,31 @@
+---
+import FormattedDate from '../components/FormattedDate.astro';
+import { IMAGE_URL } from '../consts';
+import FormattedTime from './FormattedTime.astro';
+
+const today = new Date().toISOString().split('T')[0];
+
+const {image, title, href, date} = Astro.props;
+---
+<div class="row g-4 align-items-center" title={title}>
+    <div class="col-md-6">
+        <div class="rounded overflow-hidden">
+            <img src={image} class="img-fluid rounded img-zoomin w-100" style="height: 230px;" alt={title}>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex flex-column">
+            <a href={`blog${href}`} class="h3"> {title.slice(0, 120)}... </a>
+            <p class="mb-0 fs-5">
+                <i class="fa fa-clock"> 
+                    {
+                        today === date.split('T')[0] ?
+                        <FormattedTime date={date} />
+                        :
+                        <FormattedDate date={date} />
+                    }
+                </i> 
+            </p>
+        </div>
+    </div>
+</div>

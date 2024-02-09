@@ -1,10 +1,13 @@
 ---
 import FormattedDate from '../components/FormattedDate.astro';
+import FormattedTime from '../components/FormattedTime.astro';
 import { IMAGE_URL } from '../consts';
 
-const today = new Date();
+const today = new Date().toISOString().split('T')[0];
+
 
 const {image, title, href, date} = Astro.props;
+
 ---
 <style>
     .card__post__title{
@@ -61,16 +64,16 @@ const {image, title, href, date} = Astro.props;
         <div class="card__post__body">
             <h5 class="card__post__title">
                 <span class="text-primary">// </span>
-                {title.slice(0, 50)}
+                {title.slice(0, 50)}...
             </h5>
         </div>
         <div class="card__post__footer">
             <small class="text-secondary">
-                Posted
+                Posted : 
                 <span class="card__post__date">
                     {
-                        date.toDateString == today.toDateString() ?
-                        'Today'
+                        today === date.split('T')[0] ?
+                        <FormattedTime date={date} />
                         :
                         <FormattedDate date={date} />
                     }

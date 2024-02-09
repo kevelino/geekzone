@@ -5,16 +5,10 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://kevelino.github.io',
+	base: '/geekzone',
 	integrations: [
 		mdx(), 
 		sitemap(),
 	],
-	i18n: {
-		defaultLocale: "en",
-		locales: ["en", "fr"],
-		routing: {
-			prefixDefaultLocale: false
-		}
-	}
 });

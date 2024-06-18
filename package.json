@@ -16,6 +16,8 @@
     "@ckeditor/ckeditor5-build-classic": "^41.0.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
     "astro": "^4.3.5",
+    "axios": "^1.7.2",
+    "jquery": "^3.7.1",
     "node-fetch": "^3.3.2"
   }
 }

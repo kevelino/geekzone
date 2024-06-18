@@ -122,23 +122,25 @@ const WeekEventPost = await getWeekEvent();
 							}
 						</div>
 					</div>
-
 					{
-						PreviousMonthPosts
-						&&
-						<div class="col-12 row mt-5">
-                        <div class="border-bottom mb-4">
-                            <h2 class="my-4">Last month's articles</h2>
-                        </div>
+						PreviousMonthPosts.error
+						?
+							<span></span>
+						:
 
-                        {/* <div class="latest-news-carousel owl-carousel owl-theme">
-							{
-								PreviousMonthPosts.map((post: any) => (
-									<LastMonthPosts image={post.image} title={post.title_en} author={post.author.username} href={post.absolute_url} date={post.posted} />
-								))
-							}
-						</div> */}
-                    </div>
+							<div class="col-12 row mt-5">
+								<div class="border-bottom mb-4">
+									<h2 class="my-4">Last month's articles</h2>
+								</div>
+
+								<div class="latest-news-carousel owl-carousel owl-theme">
+									{
+										PreviousMonthPosts.map((post: any) => (
+											<LastMonthPosts image={post.image} title={post.title_en} author={post.author.username} href={post.absolute_url} date={post.posted} />
+										))
+									}
+								</div>
+							</div>
 					}
 					
 				</div>

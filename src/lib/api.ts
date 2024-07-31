@@ -8,8 +8,6 @@ export const getLastPost = async () => {
   const url = "get-last-article";
   try {
     const response = await axios.get(`${ENDPOINT}${url}`);
-    console.log(response.data);
-    
     
     return response.data; // Retourne les données de la réponse
   } catch (error) {
@@ -101,6 +99,7 @@ export const getPreviousMonthPosts = async () => {
   const url = "get-previous-month-posts";
   try {
     const response = await axios.get(`${ENDPOINT}${url}`);
+    
     return response.data;
   } catch (error) {
     console.error(error);
